@@ -1,6 +1,6 @@
 class Setup
 
-  def create_blank_grid
+  def self.create_blank_grid
     grid = Hash.new
     x_array = []
     y_array = []
@@ -18,8 +18,13 @@ class Setup
     grid
   end
 
-  def get_user_setup(grid)
+  def self.get_user_setup(grid)
 
+    grid[[5,5]] = "+"
+    grid[[5,6]] = "+"
+    grid[[9,10]] = "+"
+    grid[[9,11]] = "+"
+    grid[[11,10]] = "+"
 
     grid
   end

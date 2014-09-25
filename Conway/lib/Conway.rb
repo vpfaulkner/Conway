@@ -1,13 +1,14 @@
 class Conway
   def run
-    grid = Setup.new.create_blank_grid
-    grid = setup.get_user_setup(grid)
+    grid = Setup.create_blank_grid
+    grid = Setup.get_user_setup(grid) # MAKE RANDOM SETUP LATER
     run_status = nil
-    until run_status == "Over"
-      session = Session.new(grid)
-      grid = session.play(grid)
-      session.display(grid)
-      run_status = session.run_status
+    loop do
+      grid = Session.play(grid)
+      Session.display(grid)
+      run_status = Session.run_status
+      sleep(1)
+      # ADD BREAK IF INPUT
     end
   end
 end
