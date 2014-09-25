@@ -9,7 +9,12 @@ class Conway
       grid = Session.play(grid)
       Session.display(grid)
       sleep(1)
-      # ADD BREAK IF INPUT
+
+      system("stty raw -echo")
+      char = STDIN.read_nonblock(1) rescue nil
+      system("stty -raw echo")
+      break if /q/i =~ char
+      
     end
   end
 end
