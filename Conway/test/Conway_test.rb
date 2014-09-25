@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require "Conway"
+require "conway"
 require "session"
 require "setup"
 
@@ -14,7 +14,7 @@ class ConwayTest < MiniTest::Unit::TestCase
     grid = Setup.create_blank_grid
     grid = Setup.get_user_setup(grid)
 
-    assert_equal 5, grid.values.count("+")
+    assert_equal 6, grid.values.count("+")
   end
 
   def test_session_play
@@ -23,7 +23,15 @@ class ConwayTest < MiniTest::Unit::TestCase
     grid = Session.play(grid)
 
     assert grid.values.count("+") > 0, "Living grid"
+  end
 
+  def test_session_display
+    grid = Setup.create_blank_grid
+    grid = Setup.get_user_setup(grid)
+    grid = Session.play(grid)
+    Session.display(grid)
+
+    assert Session.display(grid), "Displayed"
   end
 
 end

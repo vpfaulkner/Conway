@@ -1,6 +1,7 @@
 class Session
 
   def self.play(grid)
+    new_grid = Hash.new
     grid.each do |coordinates, value|
       x_coordinate = coordinates[0]
       y_coordinate = coordinates[1]
@@ -19,32 +20,30 @@ class Session
       living_neighbors = neighbors_values.count("+")
 
       if value == "+"
-        case
-        when living_neighbors > 3
-          then grid[coordinates] = "."
-        when living_neighbors > 1
-          grid[coordinates] = "+"
+        living_neighbors = (living_neighbors - 1)
+        if living_neighbors > 3
+          new_grid[coordinates] = "."
+        elsif living_neighbors > 1
+          new_grid[coordinates] = "+"
         else
-          grid[coordinates] = "."
+          new_grid[coordinates] = "."
         end
       elsif living_neighbors == 3
-        grid[coordinates] = "+"
+        new_grid[coordinates] = "+"
       elsif value == "."
-        grid[coordinates] = "."
+        new_grid[coordinates] = "."
       end
 
     end
 
-    grid
+    new_grid
   end
 
-  def display(grid)
+  def self.display(grid)
+    print "--------------------"
 
-  end
 
-  def run_status
 
-    run_status
   end
 
 end
