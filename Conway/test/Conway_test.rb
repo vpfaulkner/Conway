@@ -29,7 +29,6 @@ class ConwayTest < MiniTest::Unit::TestCase
     grid = Setup.create_blank_grid
     grid = Setup.get_user_setup(grid)
     grid = Session.play(grid)
-    Session.display(grid)
 
     assert Session.display(grid), "Displayed"
   end

@@ -40,10 +40,13 @@ class Session
   end
 
   def self.display(grid)
-    print "--------------------"
-
-
-
+    print "--------------------\n"
+    counter = 0
+    grid.each do |coordinates, value|
+      counter += 1
+      print value
+      print "\n" if counter % 20 == 0
+    end
   end
 
 end
