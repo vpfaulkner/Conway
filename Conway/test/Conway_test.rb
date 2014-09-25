@@ -1,8 +1,10 @@
 require "minitest/autorun"
 require "Conway"
+require "session"
+require "setup"
 
 class ConwayTest < MiniTest::Unit::TestCase
-  def test_first_test
-    assert false, "Please add a test here"
+  def test_setup_create_blank_grid
+    assert Setup.new.create_blank_grid.is_a?(Hash), "Blank grid"
   end
 end
