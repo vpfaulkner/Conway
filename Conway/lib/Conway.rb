@@ -16,12 +16,7 @@ class Conway
     loop do
       session.display
       session.play
-
-
-      # Session.display(grid)
-      # grid = Session.play(grid)
       sleep(1)
-
       system("stty raw -echo")
       char = STDIN.read_nonblock(1) rescue nil
       system("stty -raw echo")
