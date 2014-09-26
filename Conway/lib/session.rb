@@ -1,6 +1,11 @@
 class Session
+  attr_accessor :grid
 
-  def self.play(grid)
+  def initialize(grid)
+    @grid = grid
+  end
+
+  def play
     new_grid = Hash.new
     grid.each do |coordinates, value|
       x_coordinate = coordinates[0]
@@ -35,11 +40,12 @@ class Session
       end
 
     end
-
-    new_grid
+    puts grid.inspect
+    puts new_grid.inspect
+    grid = new_grid
   end
 
-  def self.display(grid)
+  def display
     print "--------------------\n"
     counter = 0
     grid.each do |coordinates, value|
