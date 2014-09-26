@@ -12,8 +12,6 @@ class Conway
     setup.create_blank_grid
     setup.get_user_setup
     @grid = setup.grid
-    puts @grid.inspect # DELETE LATER
-
     session = Session.new(@grid)
     loop do
       session.display

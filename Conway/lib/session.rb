@@ -1,5 +1,4 @@
 class Session
-  attr_accessor :grid
 
   def initialize(grid)
     @grid = grid
@@ -7,7 +6,7 @@ class Session
 
   def play
     new_grid = Hash.new
-    grid.each do |coordinates, value|
+    @grid.each do |coordinates, value|
       x_coordinate = coordinates[0]
       y_coordinate = coordinates[1]
       neighbors_values = []
@@ -17,7 +16,7 @@ class Session
 
       neighbors_x.each do |neighbor_x|
         neighbors_y.each do |neighbor_y|
-          neighbor_value = grid[[neighbor_x,neighbor_y]]
+          neighbor_value = @grid[[neighbor_x,neighbor_y]]
           neighbors_values.push(neighbor_value)
         end
       end
@@ -40,15 +39,13 @@ class Session
       end
 
     end
-    puts grid.inspect
-    puts new_grid.inspect
-    grid = new_grid
+    @grid = new_grid
   end
 
   def display
     print "--------------------\n"
     counter = 0
-    grid.each do |coordinates, value|
+    @grid.each do |coordinates, value|
       counter += 1
       print value
       print "\n" if counter % 20 == 0

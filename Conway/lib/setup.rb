@@ -43,7 +43,6 @@ class Setup
   end
 
   def validate_coordinates(input)
-    puts input.inspect
     validate = lambda { |n|
       (n >= 1) && (n <= 20)}
 
