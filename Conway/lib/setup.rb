@@ -18,32 +18,48 @@ class Setup
     grid
   end
 
+  def self.adjust_by_one(coordinate_array)
+    new_array = []
+    coordinate_array.each { |n|
+      new_n = n - 1
+      new_array.push(new_n)
+    }
+    new_array
+  end
+
   def self.get_coordinates
-    coordintate_array = []
+    coordinate_array = []
     loop do
       input = gets.chomp
       break if input == "Done"
       input = input.split(", ").map(&:to_i)
-      coordintate_array.concat(input)
-      puts "\n\nYour coordinates: #{coordintate_array.inspect}. Add another or type Done.\n\n"
+      if coordinate_array.include?(input)
+        puts "\n\nYou can't put duplicate points!!! Try again.\n\n"
+      else
+        coordinate_array.push(input)
+      end
+      puts "\n\nYour coordinates: #{coordinate_array}. Add another or type Done.\n\n"
     end
-    coordintate_array
+    coordinate_array.flatten!
+    coordinate_array
   end
 
   def self.get_user_setup(grid)
     puts "\n\n**********************\n\nWelcome to Conway's Game of Life!\n\n**********************\n\nYou have a 20 x 20 grid to play on. Pick a starting point by entering two coordinates seperated by a comma. (ex: 10, 10)\n\n"
 
-    coordintate_array = get_coordinates
+    coordinate_array = get_coordinates
 
     validate = lambda { |n|
       (n >= 1) && (n <= 20)}
-    puts coordintate_array.inspect
-    until (coordintate_array.length % 2 == 0) && (coordintate_array.all?(&validate))
+
+    until (coordinate_array.length % 2 == 0) && (coordinate_array.all?(&validate))
       puts "Every point needs two coordinates between 1-20 . Try again."
-      coordintate_array = get_coordinates
+      coordinate_array = get_coordinates
     end
 
-    points_array = coordintate_array.each_slice(2)
+    coordinate_array = adjust_by_one(coordinate_array)
+
+    points_array = coordinate_array.each_slice(2)
     points_array.each do |coordinate|
       grid[coordinate] = "+"
     end
