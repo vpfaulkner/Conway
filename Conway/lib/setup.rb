@@ -18,17 +18,29 @@ class Setup
     grid
   end
 
-  def self.get_user_setup(grid)
-    puts "Welcome to Conway's Game of Life!\n\nYou have a 20 x 20 grid to play on. Pick your starting point by entering two coordinates seperated by a comma. (ex: 10, 10, 5, 5)"
+  def self.get_coordinates
+    coordintate_array = []
+    loop do
+      input = gets.chomp
+      break if input == "Done"
+      input = input.split(", ").map(&:to_i)
+      coordintate_array.concat(input)
+      puts "\n\nYour coordinates: #{coordintate_array.inspect}. Add another or type Done.\n\n"
+    end
+    coordintate_array
+  end
 
-    coordintate_array = gets.chomp.split(", ").map(&:to_i)
+  def self.get_user_setup(grid)
+    puts "\n\n**********************\n\nWelcome to Conway's Game of Life!\n\n**********************\n\nYou have a 20 x 20 grid to play on. Pick a starting point by entering two coordinates seperated by a comma. (ex: 10, 10)\n\n"
+
+    coordintate_array = get_coordinates
 
     validate = lambda { |n|
       (n >= 1) && (n <= 20)}
-
+    puts coordintate_array.inspect
     until (coordintate_array.length % 2 == 0) && (coordintate_array.all?(&validate))
       puts "Every point needs two coordinates between 1-20 . Try again."
-      coordintate_array = gets.chomp.split(", ").map(&:to_i)
+      coordintate_array = get_coordinates
     end
 
     points_array = coordintate_array.each_slice(2)
