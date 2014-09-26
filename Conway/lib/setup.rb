@@ -22,9 +22,13 @@ class Setup
     puts "Welcome to Conway's Game of Life!\n\nYou have a 20 x 20 grid to play on. Pick your starting point by entering two coordinates seperated by a comma. (ex: 10, 10, 5, 5)"
 
     coordintate_array = gets.chomp.split(", ").map(&:to_i)
-    if coordintate_array.length % 2 != 0
-      puts "Every point needs two coordinates. Try again."
-      coordintate_array = gets.chomp
+
+    validate = lambda { |n|
+      (n >= 1) && (n <= 20)}
+
+    until (coordintate_array.length % 2 == 0) && (coordintate_array.all?(&validate))
+      puts "Every point needs two coordinates between 1-20 . Try again."
+      coordintate_array = gets.chomp.split(", ").map(&:to_i)
     end
 
     points_array = coordintate_array.each_slice(2)
