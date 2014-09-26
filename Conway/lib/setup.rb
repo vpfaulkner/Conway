@@ -19,28 +19,19 @@ class Setup
   end
 
   def self.get_user_setup(grid)
+    puts "Welcome to Conway's Game of Life!\n\nYou have a 20 x 20 grid to play on. Pick your starting point by entering two coordinates seperated by a comma. (ex: 10, 10, 5, 5)"
 
-    grid[[5,5]] = "+"
-    grid[[5,6]] = "+"
-    grid[[5,7]] = "+"
-    grid[[7,7]] = "+"
-    grid[[6,9]] = "+"
-    grid[[9,9]] = "+"
-    grid[[9,10]] = "+"
-    grid[[9,11]] = "+"
-    grid[[11,10]] = "+"
-    grid[[18,18]] = "+"
-    grid[[16,17]] = "+"
-    grid[[18,19]] = "+"
-    grid[[17,18]] = "+"
-    grid[[16,16]] = "+"
-    grid[[16,18]] = "+"
-    grid[[2,18]] = "+"
-    grid[[3,17]] = "+"
-    grid[[2,19]] = "+"
-    grid[[1,18]] = "+"
-    grid[[4,18]] = "+"
-    grid[[5,17]] = "+"
+    coordintate_array = gets.chomp.split(", ").map(&:to_i)
+    if coordintate_array.length % 2 != 0
+      puts "Every point needs two coordinates. Try again."
+      coordintate_array = gets.chomp
+    end
+
+    points_array = coordintate_array.each_slice(2)
+    points_array.each do |coordinate|
+      grid[coordinate] = "+"
+    end
+
     grid
   end
 
