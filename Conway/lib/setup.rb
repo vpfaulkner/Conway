@@ -7,6 +7,12 @@ class Setup
     @coordinate_array = []
   end
 
+  def run
+    create_blank_grid
+    get_user_setup
+    @grid
+  end
+
   def create_blank_grid
     x_array = []
     y_array = []

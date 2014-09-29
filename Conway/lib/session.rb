@@ -4,6 +4,11 @@ class Session
     @grid = grid
   end
 
+  def run
+    play
+    display
+  end
+
   def play
     new_grid = Hash.new
     @grid.each do |coordinates, value|

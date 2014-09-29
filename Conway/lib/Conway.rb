@@ -9,13 +9,10 @@ class Conway
 
   def run
     setup = Setup.new(@grid)
-    setup.create_blank_grid
-    setup.get_user_setup
-    @grid = setup.grid
+    @grid = setup.run
     session = Session.new(@grid)
     loop do
-      session.display
-      session.play
+      session.run
       sleep(1)
       system("stty raw -echo")
       char = STDIN.read_nonblock(1) rescue nil
